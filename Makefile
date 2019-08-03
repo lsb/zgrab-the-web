@@ -1,3 +1,7 @@
+all:
+	make domainlist
+	make handshakes
+
 domainlist:
 	./01-get-index-paths.sh | ./02-index-paths-to-fqdns.sh | split -l 10000000 -d - $(date -I).fqdn.
 	parallel gzip -9 ::: *.fqdn.*
